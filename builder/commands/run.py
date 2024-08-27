@@ -17,6 +17,11 @@ FRAMEWORK_TEMPLATES = {
     'Flask': os.path.join(BASE_DIR, 'templates', 'flask_template'),
 }
 
+DRF_TEMPLATES = {
+    'With Oauth': os.path.join(BASE_DIR, 'templates', 'restframework_with_oauth_template'),
+    'Without Oauth': os.path.join(BASE_DIR, 'templates', 'restframework_template'),
+}
+
 FRAMEWORK_STYLES = {
     'Django': '[bold green]Django[/bold green]',
     'DRF': '[bold]DRF[/bold]',
@@ -33,6 +38,14 @@ def ask_user_choice():
         pointer="=>",
         instruction="(use arrows to select)"
     ).execute()
+    choices =
+    if selected_framework == 'DRF':
+        selected_framework = inquirer.select(
+            message="Choose an option:",
+            choices=choices,
+            pointer="=>",
+            instruction="(use arrows to select)"
+        ).execute()
 
     return selected_framework
 
