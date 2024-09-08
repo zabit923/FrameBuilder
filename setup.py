@@ -6,6 +6,7 @@ setup(
     description='Library for creating projects with a ready-made structure on popular Python frameworks',
     author='Ibragimov Zabit',
     author_email='xaclafun1991@gmail.com',
+    url='https://github.com/zabit923/FrameBuilder',
     packages=find_packages(),
     install_requires=[
         'rich',

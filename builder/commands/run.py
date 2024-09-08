@@ -38,14 +38,16 @@ def ask_user_choice():
         pointer="=>",
         instruction="(use arrows to select)"
     ).execute()
-    choices =
+
     if selected_framework == 'DRF':
-        selected_framework = inquirer.select(
+        drf_options = list(DRF_TEMPLATES.keys())
+        selected_option = inquirer.select(
             message="Choose an option:",
-            choices=choices,
+            choices=drf_options,
             pointer="=>",
             instruction="(use arrows to select)"
         ).execute()
+        selected_framework = selected_option
 
     return selected_framework
 
@@ -57,7 +59,10 @@ def install_dependencies(project_path):
 
 
 def create_project_structure(selected_framework, project_name):
-    template_path = FRAMEWORK_TEMPLATES[selected_framework]
+    if selected_framework in DRF_TEMPLATES:
+        template_path = DRF_TEMPLATES[selected_framework]
+    else:
+        template_path = FRAMEWORK_TEMPLATES[selected_framework]
     project_path = os.path.join(os.getcwd(), project_name)
     shutil.copytree(template_path, project_path)
     with console.status(

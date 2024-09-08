@@ -1,12 +1,12 @@
 services:
-  stride-project:
+  your-project:
     restart: always
     build:
       context: .
     ports:
       - '8000:8000'
     volumes:
-      - ./stride:/stride
+      - ./project:/project
       - ./media:/src/media
     env_file: .pg-env
     command: >
@@ -16,5 +16,18 @@ services:
 
   database:
     restart: always
-    image: postgres:14.6-alpine
+    image: postgres:14-alpine
     env_file: .pg-env
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./your_certificate.crt:/etc/ssl/certs/your_certificate.crt:ro
+      - ./your_certificate.key:/etc/ssl/private/your_certificate.key:ro
+      - ./your_certificate.crt:/etc/ssl/certs/your_certificate.crt:ro
+    depends_on:
+      - your-project
