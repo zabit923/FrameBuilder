@@ -1,12 +1,20 @@
 from setuptools import setup, find_packages
 
+
+def readme():
+  with open('README.md', 'r') as f:
+    return f.read()
+
+
 setup(
     name='FrameBuilder',
-    version='0.1.0',
+    version='0.1.1',
     description='Library for creating projects with a ready-made structure on popular Python frameworks',
     author='Ibragimov Zabit',
     author_email='xaclafun1991@gmail.com',
     url='https://github.com/zabit923/FrameBuilder',
+    long_description=readme(),
+    long_description_content_type='text/markdown',
     packages=find_packages(),
     install_requires=[
         'rich',

@@ -27,6 +27,8 @@ FRAMEWORK_STYLES = {
     'DRF': '[bold]DRF[/bold]',
     'FastAPI': '[bold blue]FastAPI[/bold blue]',
     'Flask': '[bold red]Flask[/bold red]',
+    'With Oauth': '[bold magenta]DRF with OAuth[/bold magenta]',
+    'Without Oauth': '[bold yellow]DRF without OAuth[/bold yellow]',
 }
 
 
@@ -65,14 +67,9 @@ def create_project_structure(selected_framework, project_name):
         template_path = FRAMEWORK_TEMPLATES[selected_framework]
     project_path = os.path.join(os.getcwd(), project_name)
     shutil.copytree(template_path, project_path)
-    with console.status(
-            "[bold][yellow]Installing dependencies from requirements.txt...[/yellow][/bold]",
-            spinner='monkey'
-    ):
-        install_dependencies(project_path)
 
     success_message = (
-        f'Project: "{project_name}" for framework: "{FRAMEWORK_STYLES[selected_framework]}" successfully created!'
+        f'Project: "{project_name}" for framework: "{FRAMEWORK_STYLES.get(selected_framework, selected_framework)}" successfully created!'
     )
     console.print(Panel(success_message, title="Success", title_align="left"))
 
