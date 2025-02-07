@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='FrameBuilder',
-    version='0.1.1',
+    version='0.1.2',
     description='Library for creating projects with a ready-made structure on popular Python frameworks',
     author='Ibragimov Zabit',
     author_email='xaclafun1991@gmail.com',
